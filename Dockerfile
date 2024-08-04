@@ -1,4 +1,4 @@
-FROM python AS builder
+FROM python:slim AS builder
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 # Install python related packages
 RUN apt-get update && \
     apt-get install -y sudo && \
-    sudo apt-get install -y unzip nano && \
+    sudo apt-get install -y unzip nano curl && \
     curl -Lo "/tmp/chromedriver-linux64.zip" "https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/linux64/chromedriver-linux64.zip" && \
     curl -Lo "/tmp/chrome-linux64.zip" "https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/linux64/chrome-linux64.zip" && \
     unzip /tmp/chromedriver-linux64.zip -d /opt/ && \
